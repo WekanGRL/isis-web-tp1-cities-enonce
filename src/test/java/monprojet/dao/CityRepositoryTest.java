@@ -48,7 +48,7 @@ public class CityRepositoryTest {
     @Sql("test-data.sql") // On peut charger des données spécifiques pour un test
     void onSaitCompterLesEnregistrements() {
         log.info("On compte les enregistrements de la table 'City'");
-        int combienDeVillesDansLeJeuDeTest = 3 + 1; // 3 dans data.sql, 1 dans test-data.sql
+        int combienDeVillesDansLeJeuDeTest = 3 + 12; // 3 dans data.sql, 12 dans test-data.sql
         long nombre = cityDAO.count();
         assertEquals(combienDeVillesDansLeJeuDeTest, nombre, "On doit trouver 4 villes" );
     }

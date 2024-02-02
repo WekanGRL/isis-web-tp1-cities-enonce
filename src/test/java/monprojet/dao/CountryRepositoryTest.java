@@ -54,7 +54,7 @@ public class CountryRepositoryTest {
 
     @Test
     @Sql("test-data.sql")
-    void onCompteLaPopulationDeTousLesPays(){
+    void onCompteLaPopulationDeTousLesPays() {
         log.info("On vérifie que la population de tous les pays est bien calculée");
         Integer populationFrance = 2200000 + 50000 + 250000 + 85000;
         Integer populationItalie = 2900000 + 8000 + 380000 + 90000 + 3000;
