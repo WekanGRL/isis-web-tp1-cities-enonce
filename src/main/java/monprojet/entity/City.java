@@ -18,7 +18,7 @@ public class City {
     @NonNull
     private Integer population;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @NonNull
     private Country country;
 }
