@@ -40,4 +40,14 @@ public class CountryRepositoryTest {
         assertEquals(combienDePaysDansLeJeuDeTest, nombre, "On doit trouver 4 pays" );
     }
 
+    @Test
+    @Sql("test-data.sql")
+    void onCompteLaPopulationDunPays() {
+        log.info("On vérifie que la population d'un pays est bien calculée");
+        Integer populationFrance = 2200000 + 50000 + 250000 + 85000;
+        Integer populationTrouvee = countryDAO.sumCountryPopulation(1);
+        assertEquals(populationFrance, populationTrouvee, "La population de la France est de 2 161 000 habitants");
+    }
+
+
 }
