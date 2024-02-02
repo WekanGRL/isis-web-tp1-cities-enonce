@@ -1,5 +1,6 @@
 package monprojet.dao;
 
+import monprojet.projections.CountryPopulation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
@@ -10,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import monprojet.entity.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.jdbc.Sql;
+
+import java.util.List;
 
 @Log4j2 // Génère le 'logger' pour afficher les messages de trace
 @DataJpaTest
@@ -49,5 +52,22 @@ public class CountryRepositoryTest {
         assertEquals(populationFrance, populationTrouvee, "La population de la France est de 2 161 000 habitants");
     }
 
+    @Test
+    @Sql("test-data.sql")
+    void onCompteLaPopulationDeTousLesPays(){
+        log.info("On vérifie que la population de tous les pays est bien calculée");
+        Integer populationFrance = 2200000 + 50000 + 250000 + 85000;
+        Integer populationItalie = 2900000 + 8000 + 380000 + 90000 + 3000;
+        Integer populationUK = 9000000 + 1000000 + 500000;
+        Integer populationUSA = 8500000 + 4000000 + 2700000;
+        Integer populationTotale = populationFrance + populationItalie + populationUSA + populationUK;
+        List<CountryPopulation> listeNamePop = countryDAO.findCountryPopulation();
 
+        Integer countPop = 0;
+        for (CountryPopulation cp : listeNamePop) {
+            countPop += cp.getPopulation();
+        }
+
+        assertEquals(populationTotale, countPop, "La population totale est la bonne");
+    }
 }

@@ -7,8 +7,8 @@ INSERT INTO Country(id, code, name) VALUES
 
 INSERT INTO City(country_id, id, population, name) VALUES
     ((SELECT id FROM Country WHERE name like '%France%'), default, 2200000, 'Paris'),
-    ((SELECT id FROM Country WHERE name like '%United%Kingdom%'), default, 8982000, 'London'),
-    ((SELECT id FROM Country WHERE name like '%United%States%'), default, 8468000, 'New York');
+    ((SELECT id FROM Country WHERE name like '%United%Kingdom%'), default, 9000000, 'London'),
+    ((SELECT id FROM Country WHERE name like '%United%States%'), default, 8500000, 'New York');
 -- On peut fixer la valeur des clés auto-générées, mais il faudrait ensuite
 -- réinitialiser le compteur de clé auto-générée
 -- Attention : la syntaxe est différente selon le SGBD utilisé
